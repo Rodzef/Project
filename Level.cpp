@@ -118,6 +118,16 @@ void Level::Update(float deltaTime)
 	}
 }
 
+void Level::Render(sf::RenderWindow& window)
+{
+	for (auto& entity : entities)
+	{
+		sprite.setTextureRect(entity.TexRect);
+		sprite.setPosition(positions[entity.Slot]);
+		window.draw(sprite);
+	}
+}
+
 
 // считываем кооринаты левой клавиши мыши
 void Level::OnEvent(sf::Event& e)
