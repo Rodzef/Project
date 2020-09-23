@@ -6,16 +6,19 @@
 #include "Random.h"
 
 void Level::Load(const sf::Texture& texture, const sf::Font& font, const LevelParams& params)
-{
+{   
+	/* То что отображает текст времени (цвет, размер, параметры)
+	*/
+
 	timeTxt.setFont(font);
-	timeTxt.setFillColor(sf::Color::White);
+	timeTxt.setFillColor(sf::Color::Green);
 	timeTxt.setCharacterSize(20);
-	timeTxt.setPosition(800.0f - 250.0f, 130.0f);
+	timeTxt.setPosition(100.0f, 60.0f);
 
 	sprite.setTexture(texture);
 	sprite.setScale(params.Scale);
 	sprite.setOrigin(0.5f, 0.5f);
-
+	// Заполняем наш массив по порядку (так же ставим в соответсвие с рисунка числа)
 	for (unsigned int i = 0; i < 16; i++)
 	{
 		if (i < 15)
@@ -38,16 +41,16 @@ void Level::Restart()
 	timer.restart();
 	elapsed = 0.0f;
 
-	// TODO: GET RID OF THAT OVERHEAD
 
 	auto findEntity = [this](unsigned int slot) {
 		for (auto& entity : entities)
 			if (entity.Slot == slot)
 				return &entity;
 	};
-
-	for (unsigned int i = 0; i < 200; i++)
+	// Перемешивание (т.к изначаль создаем правильную, и ее мешаем, то она всегда решабельна)
+	for (unsigned int i = 0; i < 123; i++)
 	{
+		// В какую сторону двигаем пустую (ну или точнее на место пустой)
 		int dir = Random::NextInt(0, 4);
 		switch (dir)
 		{
@@ -66,7 +69,7 @@ void Level::Restart()
 		case 1:
 		{
 			int slot = static_cast<int>(freeSlot) + 1;
-			if (slot > -1 && slot < 16)
+			if (slot >= -1 && slot < 16)
 			{
 				Entity* entity = findEntity(slot);
 				unsigned int tempSlot = freeSlot;
@@ -102,7 +105,7 @@ void Level::Restart()
 		}
 	}
 }
-
+// прошедшее время
 void Level::Update(float deltaTime)
 {
 	if (IsGameOver())
@@ -115,16 +118,8 @@ void Level::Update(float deltaTime)
 	}
 }
 
-void Level::Render(sf::RenderWindow& window)
-{
-	for (auto& entity : entities)
-	{
-		sprite.setTextureRect(entity.TexRect);
-		sprite.setPosition(positions[entity.Slot]);
-		window.draw(sprite);
-	}
-}
 
+// считываем кооринаты левой клавиши мыши
 void Level::OnEvent(sf::Event& e)
 {
 	switch (e.type)
@@ -140,11 +135,11 @@ void Level::OnEvent(sf::Event& e)
 void Level::OnGUI(sf::RenderWindow& window)
 {
 	std::stringstream ss;
-	ss << "Elapsed: " << static_cast<int>(elapsed) << "s";
+	ss << "Time: " << static_cast<int>(elapsed) << "s";
 	timeTxt.setString(ss.str());
 	window.draw(timeTxt);
 }
-
+// перемещение если оно возможно
 void Level::Move(const sf::Vector2f& mouse)
 {
 	for (unsigned int i = 0; i < 15; i++)
@@ -172,7 +167,7 @@ bool Level::IsGameOver()
 	}
 	return true;
 }
-
+// Проверка могу ли я передвинуть ту плашку на которую нажал 
 bool Level::CanIMove(unsigned int slot)
 {
 	if (slot == freeSlot - 1 ||
