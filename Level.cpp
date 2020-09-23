@@ -117,7 +117,7 @@ void Level::Update(float deltaTime)
 		elapsed = timer.getElapsedTime().asSeconds();
 	}
 }
-
+// Отрисовка спрайтов
 void Level::Render(sf::RenderWindow& window)
 {
 	for (auto& entity : entities)
@@ -141,7 +141,7 @@ void Level::OnEvent(sf::Event& e)
 		}
 	}
 }
-
+// взаимодействие с графическим интерфейсом
 void Level::OnGUI(sf::RenderWindow& window)
 {
 	std::stringstream ss;
