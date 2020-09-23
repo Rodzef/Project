@@ -69,7 +69,7 @@ private:
 			window.display();
 		}
 	}
-
+// Обновление времени (Или остановка)
 	void OnUpdate(float deltaTime)
 	{
 		level.Update(deltaTime);
