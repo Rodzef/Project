@@ -105,7 +105,7 @@ void Level::Restart()
 		}
 	}
 }
-// прошедшее время
+//Если собрана то время перестает идти
 void Level::Update(float deltaTime)
 {
 	if (IsGameOver())
@@ -167,7 +167,7 @@ void Level::Move(const sf::Vector2f& mouse)
 		}
 	}
 }
-
+// Проверяет собрана или нет головоломка
 bool Level::IsGameOver()
 {
 	for (unsigned int i = 0; i < 15; i++)
