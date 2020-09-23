@@ -56,7 +56,6 @@ private:
 
 			OnUpdate(deltaTime.asSeconds());
 			
-			//Цввет окошка
 
 			window.clear(sf::Color(
 				static_cast<sf::Uint8>(0.1f * 255.0f),
