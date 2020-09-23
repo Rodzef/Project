@@ -1,6 +1,6 @@
 #pragma once
 
-#include <poorpch.h>
+#include <X.h>
 #include <SFML\System\Vector2.hpp>
 
 inline std::ostream& operator<<(std::ostream& os, const sf::Vector2i message)
