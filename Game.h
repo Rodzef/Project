@@ -2,7 +2,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "Level.h"
-#include "Base.h"
 
 int main(int argc, char* argv[]);
 // Cоздаем класс игры
