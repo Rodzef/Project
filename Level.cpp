@@ -1,8 +1,6 @@
 #include <X.h>
 #include "Level.h"
 
-#include "Base.h"
-
 #include "Random.h"
 
 void Level::Load(const sf::Texture& texture, const sf::Font& font, const LevelParams& params)
