@@ -14,8 +14,8 @@ public:
 		window.create(sf::VideoMode(500, 500), "15 Puzzle");
 		window.setVerticalSyncEnabled(true);
 
-		texture.loadFromFile("assets/numbers.png");
-		font.loadFromFile("assets/Montserrat-Regular.otf");
+		texture.loadFromFile("numbers.png");
+		font.loadFromFile("Montserrat-Regular.otf");
 		text.setFont(font);
 		text.setFillColor(sf::Color::Green);
 		text.setCharacterSize(20);
