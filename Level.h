@@ -31,7 +31,7 @@ public:
 
 private:
 	bool IsGameOver();// метод проверяющий закончилась ли игра
-	void Move(const sf::Vector2f& pos);// метод меняющий плашку н которую наали и пустуюю
+	void Move(const sf::Vector2f& pos);// метод меняющий плашку на которую нажали и пустуюю
 	bool CanIMove(unsigned int slot);// метод проверяющий могу ли я двигать плашку
 
 private:
