@@ -8,35 +8,35 @@ void Level::Load(const sf::Texture& texture, const sf::Font& font, const LevelPa
 	/* То что отображает текст времени (цвет, размер, параметры)
 	*/
 
-	timeTxt.setFont(font);
-	timeTxt.setFillColor(sf::Color::Green);
-	timeTxt.setCharacterSize(20);
-	timeTxt.setPosition(100.0f, 60.0f);
+	timeTxt.setFont(font); // берем шрифт тот,что раньше подключили
+	timeTxt.setFillColor(sf::Color::Green); // делаем зеленный свет шрифта ля timeTxt
+	timeTxt.setCharacterSize(20); // Размер текста
+	timeTxt.setPosition(100.0f, 60.0f); // Место нахождения текста
 
-	sprite.setTexture(texture);
-	sprite.setScale(params.Scale);
-	sprite.setOrigin(0.5f, 0.5f);
+	sprite.setTexture(texture); // Создаем спрайт
+	sprite.setScale(params.Scale); // Маштабирую 
+	sprite.setOrigin(0.5f, 0.5f); // Выбираю опорную точку для размещения плашек
 	// Заполняем наш массив по порядку (так же ставим в соответсвие с рисунка числа)
 	for (unsigned int i = 0; i < 16; i++)
 	{
 		if (i < 15)
 		{
 			entities[i].Slot = i;
-			entities[i].Num = i + 1;
+			entities[i].Num = i + 1; // число которое храниться в данной ячейке массива  
 			entities[i].TexRect = sf::IntRect((i + 1) * params.TexSize.x, 0,
-				params.TexSize.x, params.TexSize.y);
+				params.TexSize.x, params.TexSize.y); // подгружаю то что будет храниться в плашках
 		}
 
-		positions[i].x = i % 4 * (params.TexSize.x * params.Scale.x + params.Offset.x) + 100;
+		positions[i].x = i % 4 * (params.TexSize.x * params.Scale.x + params.Offset.x) + 100; // где мои плашки буду расположены (первое х координата, вторая y)
 		positions[i].y = i / 4 * (params.TexSize.x * params.Scale.x + params.Offset.y) + 100;
 	}
 
-	Restart();
+	Restart(); // вызываю метод
 }
 
 void Level::Restart()
 {
-	timer.restart();
+	timer.restart(); // время обнуляется
 	elapsed = 0.0f;
 
 
