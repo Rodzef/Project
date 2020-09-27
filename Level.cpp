@@ -127,7 +127,7 @@ void Level::Render(sf::RenderWindow& window)
 }
 
 
-// считываем кооринаты левой клавиши мыши
+// метод получающий е, если  это кооринаты левой клавиши мыши, то идем в move
 void Level::OnEvent(sf::Event& e)
 {
 	switch (e.type)
