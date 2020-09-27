@@ -33,13 +33,14 @@ void Level::Load(const sf::Texture& texture, const sf::Font& font, const LevelPa
 
 	Restart(); // вызываю метод
 }
-
+//метод отвечающий за перезапуск игры
 void Level::Restart()
 {
 	timer.restart(); // время обнуляется
 	elapsed = 0.0f;
 
 
+	//ссылается на то место где стоит плашка
 	auto findEntity = [this](unsigned int slot) {
 		for (auto& entity : entities)
 			if (entity.Slot == slot)
@@ -49,7 +50,7 @@ void Level::Restart()
 	for (unsigned int i = 0; i < 123; i++)
 	{
 		// В какую сторону двигаем пустую (ну или точнее на место пустой)
-		int dir = Random::NextInt(0, 4);
+		int dir = rand() % 4; // рандомлюю, а дальше в соответствии с тем что выпало двигаю плашки, если возможно
 		switch (dir)
 		{
 		case 0:
@@ -103,7 +104,7 @@ void Level::Restart()
 		}
 	}
 }
-//Если собрана то время перестает идти
+//метод обновляющий время, как конец перестает обновлять время
 void Level::Update(float deltaTime)
 {
 	if (IsGameOver())
@@ -115,7 +116,7 @@ void Level::Update(float deltaTime)
 		elapsed = timer.getElapsedTime().asSeconds();
 	}
 }
-// Отрисовка спрайтов
+// Отрисовка спрайтов плашек
 void Level::Render(sf::RenderWindow& window)
 {
 	for (auto& entity : entities)
@@ -139,13 +140,13 @@ void Level::OnEvent(sf::Event& e)
 		}
 	}
 }
-// взаимодействие с графическим интерфейсом
+// метод рисующий в окошке сколько времени прошло
 void Level::OnGUI(sf::RenderWindow& window)
 {
 	std::stringstream ss;
-	ss << "Time: " << static_cast<int>(elapsed) << "s";
+	ss << "Time: " << static_cast<int>(elapsed) << "s";// строка прошедшего времени 
 	timeTxt.setString(ss.str());
-	window.draw(timeTxt);
+	window.draw(timeTxt);//рисуем ее на экране
 }
 // перемещение если оно возможно
 void Level::Move(const sf::Vector2f& mouse)
@@ -154,10 +155,11 @@ void Level::Move(const sf::Vector2f& mouse)
 	{
 		sprite.setTextureRect(entities[i].TexRect);
 		sprite.setPosition(positions[entities[i].Slot]);
-		if (sprite.getGlobalBounds().contains(mouse))
+		if (sprite.getGlobalBounds().contains(mouse))//если попадаем по спрайту плашек и можем двигать, то меняем пустую плашку и на которую тыкнули
 		{
 			if (CanIMove(entities[i].Slot))
 			{
+				// сам процесс обмена (позиции)
 				unsigned int tempSlot = freeSlot;
 				freeSlot = entities[i].Slot;
 				entities[i].Slot = tempSlot;
