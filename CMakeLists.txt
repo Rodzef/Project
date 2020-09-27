@@ -8,8 +8,8 @@ find_package(SFML REQUIRED COMPONENTS graphics system windows)
 include_directories(${SFML_INCLUDE_DIR})
 
 
-add_executable(main  Source.cpp Level.cpp Random.cpp X.cpp)	
-add_executable(game_test  game_test.cpp Level.cpp Random.cpp X.cpp)
+add_executable(main  Source.cpp Level.cpp X.cpp)	
+add_executable(game_test  game_test.cpp Level.cpp X.cpp)
 
 
 target_link_libraries(main PUBLIC sfml-windows sfml-graphics sfml-system) 
