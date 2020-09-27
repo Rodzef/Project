@@ -153,7 +153,6 @@ void Level::Move(const sf::Vector2f& mouse)
 {
 	for (unsigned int i = 0; i < 15; i++)
 	{
-		sprite.setTextureRect(entities[i].TexRect);
 		sprite.setPosition(positions[entities[i].Slot]);
 		if (sprite.getGlobalBounds().contains(mouse))//если попадаем по спрайту плашек и можем двигать, то меняем пустую плашку и на которую тыкнули
 		{
