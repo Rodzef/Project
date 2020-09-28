@@ -2,20 +2,36 @@
 #include "catch.hpp"
 #include "X.h"
 #include "Level.h"
-#include "Game.h"
+
 
 void checker(int RandQ, std::vector<int>& positions) {
+	int placeRandQ;
+	int emptyNumber;
+	int t;
 	for (unsigned int i = 0; i < 15; i++) {
 		if (positions[i] == (RandQ + 1)) {
-			if (positions[i - 1] == 0 ||
-				positions[i + 1] == 0 ||
-				positions[i - 4] == 0 ||
-				positions[i + 4] == 0) {
-
-			}
-
+			placeRandQ = i;
+		}
+		if (positions[i] == 0) {
+			emptyNumber = i;
+		}
 	}
-	
+	bool CanIMove(unsigned int slot, unsigned int freeSlot) {
+		if ((slot == 3 && freeSlot == 4) || (slot == 4 && freeSlot == 3)) return false;
+		if ((slot == 7 && freeSlot == 8) || (slot == 8 && freeSlot == 7)) return false;
+		if ((slot == 11 && freeSlot == 12) || (slot == 12 && freeSlot == 11)) return false;
+		if (slot == freeSlot - 1 ||
+			slot == freeSlot + 1 ||
+			slot == freeSlot - 4 ||
+			slot == freeSlot + 4)
+			return true;
+		return false;
+	}
+	if (CanIMove(placeRandQ, emptyNumber)) {
+		t = emptyNumber;
+		emptyNumber = placeRandQ;
+		placeRandQ = t;
+	}
 }
 
 bool buildsAreEqual(const std::vector<int>& positions1, const std::vector<int>& positions2) {
@@ -47,5 +63,9 @@ TEST_CASE(" test") {
 	for (unsigned int i = 0; i < numOfCheckIterations; i++)
 	{
 		RandQ = rand() % 16;
+		checker(RandQ, positions);
+		// убираем в load рестарт...
 		
+		CHECK(buildsAreEqual(positions, ));
 	}
+
