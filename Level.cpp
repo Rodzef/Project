@@ -55,7 +55,7 @@ void Level::Restart()
 		case 0:
 		{
 			int slot = static_cast<int>(freeSlot) - 1;
-			if (slot > -1 && slot < 16)
+			if ((slot > -1 && slot < 16) && (slot != 4) && (slot != 8) && (slot != 12))
 			{
 				Entity* entity = findEntity(slot);
 				unsigned int tempSlot = freeSlot;
@@ -67,7 +67,7 @@ void Level::Restart()
 		case 1:
 		{
 			int slot = static_cast<int>(freeSlot) + 1;
-			if (slot > -1 && slot < 16)
+			if ((slot > -1 && slot < 16) && (slot != 3) && (slot != 7) && (slot != 11))
 			{
 				Entity* entity = findEntity(slot);
 				unsigned int tempSlot = freeSlot;
