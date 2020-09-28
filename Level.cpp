@@ -31,7 +31,6 @@ void Level::Load(const sf::Texture& texture, const sf::Font& font, const LevelPa
 		positions[i].y = i / 4 * (params.TexSize.x * params.Scale.x + params.Offset.y) + 100;
 	}
 
-	Restart(); // вызываю метод
 }
 //метод отвечающий за перезапуск игры
 void Level::Restart()
