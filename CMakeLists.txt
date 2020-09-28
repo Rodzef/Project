@@ -9,12 +9,12 @@ include_directories(${SFML_INCLUDE_DIR})
 
 
 add_executable(main  Source.cpp Level.cpp X.cpp)	
-add_executable(game_test  game_test.cpp Level.cpp X.cpp)
+#add_executable(game_test  game_test.cpp Level.cpp X.cpp)
 
 
 target_link_libraries(main PUBLIC sfml-windows sfml-graphics sfml-system) 
-target_link_libraries(game_test PUBLIC sfml-windows sfml-graphics sfml-system)
+#target_link_libraries(game_test PUBLIC sfml-windows sfml-graphics sfml-system)
 
 
 enable_testing()
-add_test(game_test game_test)
+#add_test(game_test game_test)
