@@ -64,7 +64,7 @@ TEST_CASE(" test") {
 	{
 		RandQ = rand() % 16;
 		checker(RandQ, positions);
-		// убираем в load рестарт...
+		// убираем в load рестарт... теперь он сразу не собирает рандомную комбинацию плашек, только после f2 теперь мешает
 		
 		CHECK(buildsAreEqual(positions, ));
 	}
