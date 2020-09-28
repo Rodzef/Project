@@ -176,9 +176,12 @@ bool Level::IsGameOver()
 	}
 	return true;
 }
-// Проверка могу ли я передвинуть ту плашку на которую нажал 
+// Проверка могу ли я передвинуть ту плашку на которую нажал (теперь точно не двигает лишние)
 bool Level::CanIMove(unsigned int slot)
 {
+	if ((slot == 3 && freeSlot == 4) || (slot == 4 && freeSlot == 3)) return false;
+	if ((slot == 7 && freeSlot == 8) || (slot == 8 && freeSlot == 7)) return false;
+	if ((slot == 11 && freeSlot == 12) || (slot == 12 && freeSlot == 11)) return false;
 	if (slot == freeSlot - 1 ||
 		slot == freeSlot + 1 ||
 		slot == freeSlot - 4 ||
