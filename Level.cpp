@@ -30,7 +30,7 @@ void Level::Load(const sf::Texture& texture, const sf::Font& font, const LevelPa
 		positions[i].x = i % 4 * (params.TexSize.x * params.Scale.x + params.Offset.x) + 100; // где мои плашки буду расположены (первое х координата, вторая y)
 		positions[i].y = i / 4 * (params.TexSize.x * params.Scale.x + params.Offset.y) + 100;
 	}
-
+// теперь перед нами полностью собранная головоломка
 }
 //метод отвечающий за перезапуск игры
 void Level::Restart()
