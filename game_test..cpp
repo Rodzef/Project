@@ -77,6 +77,6 @@ TEST_CASE(" test") {
 		positionMouse[0].x = RandQ % 4 * (params.TexSize.x * params.Scale.x + params.Offset.x) + 100;
 		positionMouse[1].y = RandQ / 4 * (params.TexSize.x * params.Scale.x + params.Offset.y) + 100;
 		level.Move(positionMouse[0], positionMouse[1])
-		CHECK(buildsAreEqual(positions, level.entities.Num));
+		CHECK(buildsAreEqual(positions, level.entities.Slot));
 	}
 
