@@ -36,7 +36,9 @@ void checker(int RandQ, std::vector<int>& positions) {
 
 bool buildsAreEqual(const std::vector<int>& positions1, const std::vector<int>& positions2) {
 	for (int i = 0; i < 15; i++) {
-		if (positions1[i] != positions2[i]) {
+		if (positions1[i] == 0) {
+		
+		} else (positions1[i] != positions2[i]) {
 			return false;
 		}
 
@@ -47,11 +49,17 @@ bool buildsAreEqual(const std::vector<int>& positions1, const std::vector<int>& 
 // Test
 TEST_CASE(" test") {
 	Game game;
-
+	Level level;
+	sf::Texture texture;
+	sf::Font font;
+	sf::Text text; 
 	int numOfCheckIterations = 100;
 
 	std::vector<int> positions;
-	
+	std::vector<float> positionMouse;
+	for (int i = 0; i < 2; i++) {
+		positionMouse[i] = 0;
+	}
 	int n = 0;
 	// для проверки удобнее так и просто значения менять positions[i] 
 	for (int i = 0; i < 15; i++) {
@@ -65,7 +73,10 @@ TEST_CASE(" test") {
 		RandQ = rand() % 16;
 		checker(RandQ, positions);
 		// убираем в load рестарт... теперь он сразу не собирает рандомную комбинацию плашек, только после f2 теперь мешает
-		
-		CHECK(buildsAreEqual(positions, ));
+		level.Load(texture.loadFromFile("numbers.png"), font.loadFromFile("Montserrat-Regular.otf"), { { 32, 32 }, {2.0f, 2.0f }, { 10.0f, 10.0f } });
+		positionMouse[0].x = RandQ % 4 * (params.TexSize.x * params.Scale.x + params.Offset.x) + 100;
+		positionMouse[1].y = RandQ / 4 * (params.TexSize.x * params.Scale.x + params.Offset.y) + 100;
+		level.Move(positionMouse[0], positionMouse[1])
+		CHECK(buildsAreEqual(positions, level.entities.Num));
 	}
 
